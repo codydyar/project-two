@@ -1,5 +1,6 @@
 //to add to database run 'npx knex migrate:latest'
 
+
 exports.up = function(knex) {
     return knex.schema.createTable('vehicles', table => {
       table.increments('id'); // adds an auto incrementing PK column

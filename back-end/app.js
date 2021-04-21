@@ -11,13 +11,8 @@ app.use(bodyParser.json());
 
 var search = require('./routes/search');
 
-
-app.get('/', function(req, res) {
-  res.redirect('/api/v1');
-});
-
-
-app.use('/api/v1/search', search); //sends search endpoints to be handled by search.js in routes folder
+ 
+app.use('/search', search); //sends search endpoints to be handled by search.js in routes folder
 
 app.listen(PORT, () => {
   console.log(`The server is running on ${PORT}`);

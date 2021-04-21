@@ -3,9 +3,11 @@ var express = require('express');
 var router = express.Router();
 const knex = require('knex')(require('../knexfile.js')[process.env.NODE_ENV])
 
-router.get('/api/v1/search', function(req, res, next) {
+router.get('/', function(req, res, next) {
+    console.log('in search.js')
     knex
-      .select('*')    
+      .select('*')
+      .from('vehicles') 
       .then(data => res.status(200).json(data))
       .catch(err =>
         res.status(404).json({
@@ -17,3 +19,13 @@ router.get('/api/v1/search', function(req, res, next) {
 });
 
 module.exports = router;
+
+
+router.get('/', function(req, res, next) {
+    knex('actors').then(function (actors) {
+      res.json(actors)
+    }).catch(function (err) {
+      next(new Error(err));
+    })
+  });
+  

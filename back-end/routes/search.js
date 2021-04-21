@@ -28,4 +28,3 @@ router.get('/', function(req, res, next) {
       next(new Error(err));
     })
   });
-  

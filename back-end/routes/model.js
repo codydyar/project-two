@@ -13,7 +13,10 @@ router.get('/', function(req, res, next) {
           data.forEach(obj=>{
             list.push(obj.model)
           })
-        return list
+          list = list.filter( function( item, index, inputArray ) {
+            return inputArray.indexOf(item) == index;
+          });
+          return list
         })
         .then(data => res.status(200).json(data))
         .catch(err =>

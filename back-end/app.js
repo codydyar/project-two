@@ -9,16 +9,20 @@ app.use(bodyParser.json());
 
 //route js file paths
 
-var search = require('./routes/search');
+const search = require('./routes/search');
+const make = require('./routes/make');
+const model = require('./routes/model');
 
- 
+app.use('/make', make); //sends make endpoints to be handled by make.js in routes folder
+app.use('/model', model); //sends model endpoints to be handled by model.js in routes folder
 app.use('/search', search); //sends search endpoints to be handled by search.js in routes folder
+
 
 app.listen(PORT, () => {
   console.log(`The server is running on ${PORT}`);
 });
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

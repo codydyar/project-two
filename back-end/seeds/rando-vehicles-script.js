@@ -8,16 +8,11 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateRandAlphaNumStr(len) {
-    var rdmString = "";
-    for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
-    return  rdmString.substr(0, len);
-  
-  }
+
 
 function randomVehicles(){
     let newVehicle = {}
-    newVehicle.vin = generateRandAlphaNumStr(17)
+    newVehicle.vin = Math.random().toString(36).substring(7)
     let typeList = ['Sedan','Van','Truck','SUV']
     newVehicle.type = typeList[getRandomInt(0,typeList.length-1)]
     newVehicle.year = getRandomInt(1994, 2021)
@@ -30,7 +25,7 @@ function randomVehicles(){
     newVehicle.price = getRandomInt(2000,70000)
     if(getRandomInt(0,1)===1){newVehicle.isNew = true}else{newVehicle.isNew = false}
 
-    return `{VIN: '${newVehicle.vin}', type: '${newVehicle.type}', year: ${newVehicle.year}, make: '${newVehicle.make}', model: '', color: '${newVehicle.color}', mileage: ${newVehicle.mileage}, price: ${newVehicle.price}, isNew: ${newVehicle.isNew}},`
+    return `{VIN: '', type: '${newVehicle.type}', year: ${newVehicle.year}, make: '${newVehicle.make}', model: '', color: '${newVehicle.color}', mileage: ${newVehicle.mileage}, price: ${newVehicle.price}, isNew: ${newVehicle.isNew}},`
 
 }
 let num=50

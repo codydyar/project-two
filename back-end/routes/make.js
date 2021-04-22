@@ -7,6 +7,13 @@ router.get('/', function(req, res, next) {
       knex
         .select('make')
         .from('vehicles')
+        .then(data => {
+          let list = []
+          data.forEach(obj=>{
+            list.push(obj.make)
+          })
+        return list
+        })
         .then(data => res.status(200).json(data))
         .catch(err =>
           res.status(404).json({

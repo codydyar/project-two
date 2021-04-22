@@ -8,6 +8,13 @@ router.get('/', function(req, res, next) {
         .select('model')
         .from('vehicles')
         .where('make', req.query.make)
+        .then(data => {
+          let list = []
+          data.forEach(obj=>{
+            list.push(obj.model)
+          })
+        return list
+        })
         .then(data => res.status(200).json(data))
         .catch(err =>
           res.status(404).json({

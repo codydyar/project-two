@@ -1,15 +1,13 @@
-
+//functional imports
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
+
 // component Imports
-import Header from './components/Header.js'
 import HomePage from './components/HomePage.js'
-import Footer from './components/Footer.js'
 import SearchPage from './components/SearchPage.js'
+import AboutPage from './components/AboutPage.js'
 
 //css imports
 import './styles/App.module.css';
@@ -19,12 +17,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-          <Header />
-          <Switch>
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/search" component={SearchPage}/>
-          </Switch>
-          <Footer />
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/search" component={SearchPage}/>
+        <Route path="/about" component={AboutPage}/>
       </div>
     </Router>
   );

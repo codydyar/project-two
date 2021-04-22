@@ -1,4 +1,5 @@
 import Header from './Header';
+import VehicleCard from './VehicleCard';
 
 //css
 import styles from '../styles/HomePage.module.css';
@@ -11,6 +12,7 @@ function HomePage() {
       <div className={styles.mainBody}>
         <h1>Name of Dealership</h1>
         <p>We Exist for U</p>
+        <VehicleCard />
       </div>
     </div>
       )

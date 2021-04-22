@@ -14,10 +14,14 @@ app.use(cors());
 const search = require('./routes/search');
 const make = require('./routes/make');
 const model = require('./routes/model');
+const color = require('./routes/color');
+const type = require('./routes/type');
 
 app.use('/make', make); //sends make endpoints to be handled by make.js in routes folder
 app.use('/model', model); //sends model endpoints to be handled by model.js in routes folder
 app.use('/search', search); //sends search endpoints to be handled by search.js in routes folder
+app.use('/color', color); //sends search endpoints to be handled by search.js in routes folder
+app.use('/type', type); //sends search endpoints to be handled by search.js in routes folder
 
 
 

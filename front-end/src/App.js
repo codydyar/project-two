@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/" component={HomePage}/>
         <Route path="/search" component={SearchPage}/>
         <Route path="/about" component={AboutPage}/>
+        <Route path="/about" component={AboutPage}/>
       </div>
     </Router>
   );

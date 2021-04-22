@@ -63,7 +63,7 @@ exports.seed = function(knex) {
       {VIN: '5FNRL5H23EB026909', type: 'Truck', year: 2004, make: 'Bentley', model: 'Bentayga V8', color: 'Orange', mileage: 279774, price: 37402, isNew: true},
       {VIN: '4T1BF3EK5AU074197', type: 'Truck', year: 2008, make: 'Dodge', model: 'Ram', color: 'Gray', mileage: 132085, price: 49418, isNew: false},
       {VIN: '1FTSW21P76EA51389', type: 'Sedan', year: 2004, make: 'Audi', model: 'A3', color: 'Blue', mileage: 32938, price: 4812, isNew: true},
-      {VIN: '5XYKTDA10BG171116', type: 'SUV', year: 1999, make: 'BMW', model: 'X5', color: 'White', mileage: 159766, price: 53743, isNew: true},
+      {VIN: '5XYKTDA10BG171116', type: 'SUV', year: 1999, make: 'BMW', model: 'X5', color: 'White', mileage: 159766, price: 53743, isNew: true}
       ]);
     });
 };

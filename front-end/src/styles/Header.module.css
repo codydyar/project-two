@@ -1,0 +1,12 @@
+.header {
+    background-color: rgb(123, 192, 123);
+    border: 2px solid black;
+}
+
+li {
+    display: inline;
+}
+
+li > a {
+    margin: 5px;
+}

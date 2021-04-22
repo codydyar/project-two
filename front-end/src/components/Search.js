@@ -15,7 +15,6 @@ function Search() {
   const history = useHistory();
 
   const onSearchSubmit = () => {
-    alert(`You searched for ${searchInput.make} ${searchInput.model}`)
     history.push(`/search?make=${searchInput.make}&model=${searchInput.model}`)
   };
   //fetch all vehicle makes for filtering
@@ -37,7 +36,7 @@ function Search() {
 
 
   return (
-    <div>
+    <div className={styles.searchBar}>
       <div>
       {/* Button for Make */}
       <DropdownButton
@@ -64,8 +63,6 @@ function Search() {
           {modelList.map(variant => (<Dropdown.Item onClick={ ()=> (setSearchInput({make:`${searchInput.make}`,model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
         </Dropdown.Menu>
       </DropdownButton>
-
-
       </div>
       <button class={styles.buttonBox} type='submit' onClick={onSearchSubmit}>Search</button>
     </div>

@@ -1,5 +1,5 @@
 .vehicleCard {
-    margin: 10px;
+    margin: 15px;
     padding: 10px;
     border: 2px solid black;;
     border-radius: 5px;
@@ -7,6 +7,12 @@
 }
 
 .vehicleCard:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
 }
+
+.vehicleCard > img {
+    height: 60px;
+    width: 90px;
+}
+

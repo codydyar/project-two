@@ -11,6 +11,7 @@ function AboutPage() {
       <div className={styles.aboutBody}>
         <h1>About Our Dealership</h1>
         <p>We Exist for U</p>
+        <p>And Nobody Else ;)</p>
       </div>
     </div>
       )

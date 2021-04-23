@@ -60,7 +60,8 @@ function SearchFilters() {
 
   return (
     <div className={styles.filters}>
-      <div className="makeSelector">
+      <h1>Filter</h1>
+      <div className={styles.makeSelector}>
       {/* Button for Make */}
       <p>Make</p>
       <DropdownButton
@@ -69,10 +70,9 @@ function SearchFilters() {
         id={`dropdown-variants-make`}
         // variant={variant.toLowerCase()}
         title={filterInput.make} //change button displayed make when state is changed.
+        
       >
-        <Dropdown.Menu>
-          {makeList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({...filterInput, make:`${variant}`, model: 'All'}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+          {makeList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, make:`${variant}`, model: 'All'}))}>{variant}</Dropdown.Item>),)}
       </DropdownButton>
       </div>
 
@@ -86,9 +86,9 @@ function SearchFilters() {
         // variant={variant.toLowerCase()}
         title={filterInput.model} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {modelList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({...filterInput, model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {modelList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
       </div>
 
@@ -113,9 +113,9 @@ function SearchFilters() {
         // variant={variant.toLowerCase()}
         title={filterInput.color} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {colorList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({...filterInput, color: `${variant}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {colorList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, color: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
       </div>
 
@@ -129,14 +129,14 @@ function SearchFilters() {
         // variant={variant.toLowerCase()}
         title={filterInput.type} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {typeList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({...filterInput, type: `${variant}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {typeList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, type: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
       </div>
 
-      <div className={styles.priceSelector}>
       {/* Button for Max Price */}
+      <div className={styles.priceSelector}>
       <p>Max Price</p>
       <input
             type="text"

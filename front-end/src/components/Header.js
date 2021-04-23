@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <div className={styles.header}>
-      <p>logo goes here</p>
+      <img src="https://www.galvanize.com/images/galvanize-logo.svg" alt="Galvanize Auto"></img>
       <nav className={styles.nav}>
         <ul>
           <li>

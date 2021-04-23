@@ -37,8 +37,9 @@ function Search() {
 
   return (
     <div className={styles.searchBar}>
-      <div>
+      <div className={styles.dropdownBoxes}>
       {/* Button for Make */}
+      <label>Make:</label>
       <DropdownButton
         as={ButtonGroup}
         key={'make'}
@@ -46,22 +47,24 @@ function Search() {
         // variant={variant.toLowerCase()}
         title={searchInput.make} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {makeList.map(variant => (<Dropdown.Item onClick={ ()=> (setSearchInput({make:`${variant}`,model: 'All'}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+       
+          {makeList.map(variant => (<Dropdown.Item className={styles.button} as="button" onClick={ ()=> (setSearchInput({make:`${variant}`,model: 'All'}))}>{variant}</Dropdown.Item>),)}
+       
       </DropdownButton>
 
       {/* Button for Model */}
+      <label>Model:</label>
       <DropdownButton
+        
         as={ButtonGroup}
         key={'model'}
         id={`dropdown-variants-model`}
         // variant={variant.toLowerCase()}
         title={searchInput.model} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {modelList.map(variant => (<Dropdown.Item onClick={ ()=> (setSearchInput({make:`${searchInput.make}`,model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {modelList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setSearchInput({make:`${searchInput.make}`,model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
       </div>
       <button class={styles.buttonBox} type='submit' onClick={onSearchSubmit}>Search</button>

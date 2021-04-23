@@ -8,6 +8,7 @@ import {
 import HomePage from './components/HomePage.js'
 import SearchPage from './components/SearchPage.js'
 import AboutPage from './components/AboutPage.js'
+import AdminPage from './components/AdminPage.js'
 
 //css imports
 import './styles/App.module.css';
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/" component={HomePage}/>
         <Route path="/search" component={SearchPage}/>
         <Route path="/about" component={AboutPage}/>
-        <Route path="/about" component={AboutPage}/>
+        <Route path="/admin" component={AdminPage}/>
       </div>
     </Router>
   );

@@ -8,7 +8,6 @@ function Footer() {
   return (
     <div className={styles.footer}>
       <Link to ="/about">Learn more about us!</Link>
-      <p>smaller logo goes here</p>
       <section className={styles.contactUs}>
         Contact Us
         <ul>

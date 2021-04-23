@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    background-image: url(https://cdn.dbusiness.com/wp-content/uploads/sites/33/2018/01/car-dealership.jpg);
+    background-size: cover;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: 2px solid black;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.header > img {
+    background-color: black;
+    border-radius: 85px 20px;
+    height: 70px;
+    margin: 15px;
+    padding: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav > ul {
+    padding-inline-start: 0px;
+    padding: 10px;
+    width: 400px;
+    border: 2px solid rgb(218, 132, 21);
+    background-color: black;
+    text-align: center;
+}
+
+nav > ul > li {
+    display: inline;
+    padding: 10px;
+}
+
+nav > ul > li > a {
+    margin: 10px;
+    text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+    color: white;
+}
+
+nav > ul > li > a:visited {
+    color: white;
+}

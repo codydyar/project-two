@@ -1,0 +1,9 @@
+.mainBody {
+    text-align: center;
+}
+
+.vehicleCards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

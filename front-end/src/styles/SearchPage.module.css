@@ -1,0 +1,15 @@
+.searchPage > h1, p {
+    text-align: center;
+}
+
+.mainBody {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.vehiclesList {
+    padding: 30px;
+    flex-grow: 2;
+}
+

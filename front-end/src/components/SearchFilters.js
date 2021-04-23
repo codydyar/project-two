@@ -11,93 +11,99 @@ import styles from '../styles/SearchFilters.module.css';
 // window.location.search
 function SearchFilters() {
 
-  const [searchInput, setSearchInput] = useState({make:'All',model: 'All'}); // searchInput = {make: 'Ford', model: 'Fusion'}
-  const [filterInput, setFilterInput] = useState({year:'All',color: 'All',type: 'All', maxPrice: 'All', isNew: 'All', mileage: 'All'}); // searchInput = {make: 'Ford', model: 'Fusion'}
-
-  const [yearList, setYearList] = useState(['Loading']) //change loading to '' after backend implementation
+  const [filterInput, setFilterInput] = useState({make:'All',model: 'All', year:'All',color: 'All',type: 'All', maxPrice: 'All', isNew: 'All', mileage: 'All'}); // filterInput = {make: 'Ford', model: 'Fusion'}
+  const [makeList, setMakeList] = useState(['Loading']) //change loading to '' after backend implementation
+  const [modelList, setModelList] = useState(['Loading']) //change loading to '' after backend implementation
   const [colorList, setColorList] = useState(['Loading']) //change loading to '' after backend implementation
   const [typeList, setTypeList] = useState(['Loading']) //change loading to '' after backend implementation
-  const [priceList, setPriceList] = useState(['Loading']) //change loading to '' after backend implementation
-  const [newList, setNewList] = useState(['Loading']) //change loading to '' after backend implementation
-  const [mileageList, setMileageList] = useState(['Loading']) //change loading to '' after backend implementation
 
   //search reaction to onClick
 
   const history = useHistory();
 
   const onSearchSubmit = () => {
-    alert(`You searched for ${searchInput.make} ${searchInput.model} ${filterInput.year} ${filterInput.color} ${filterInput.type}`)
-    history.push(`/search?make=${searchInput.make}&model=${searchInput.model}&year=${filterInput.year}&color=${filterInput.color}&type=${filterInput.type}&maxPrice=${filterInput.maxPrice}&condition=${filterInput.isNew}&mileage=${filterInput.mileage}`)
+    // alert(`You searched for ${filterInput.make} ${filterInput.model} ${filterInput.year} ${filterInput.color} ${filterInput.type}`)
+    history.push(`/search?make=${filterInput.make}&model=${filterInput.model}&year=${filterInput.year}&color=${filterInput.color}&type=${filterInput.type}&maxPrice=${filterInput.maxPrice}&condition=${filterInput.isNew}&mileage=${filterInput.mileage}`)
+    console.log(filterInput)
   };
-  //fetch all vehicle years of a given make for filtering
+  //fetch all vehicle makes for filtering
   useEffect(() => {
-    if(searchInput.make === 'All'){return setYearList(['All'])}
-    fetch(`http://localhost:3001/year?make=${searchInput.make}`,)
+    fetch('http://localhost:3001/make',)
     .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
-    .then(list => setYearList(list))
+    .then(list => setMakeList(list))
     .catch(err=>err)
-  }, [searchInput.make]) //left [] empty as the list only needs to be generated once.
+  }, []) //left [] empty as the list only needs to be generated once.
+
+  //fetches all models given a specific make for filtering
+  useEffect(() => {
+    if(filterInput.make === 'All'){return setModelList(['All'])}
+    fetch(`http://localhost:3001/model?make=${filterInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
+    .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
+    .then(list => setModelList(list))
+    .catch(err=>err)
+  }, [filterInput.make]) //Updates the model list every time a new make is selected.
 
   //fetches all colors of a given make for filtering
   useEffect(() => {
-    if(searchInput.make === 'All'){return setColorList(['All'])}
-    fetch(`http://localhost:3001/color?make=${searchInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
+    fetch(`http://localhost:3001/color`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
     .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
     .then(list => setColorList(list))
     .catch(err=>err)
-  }, [searchInput.make]) //Updates the model list every time a new make is selected.
+  }, []) //Updates only once
 
   useEffect(() => {
-    if(searchInput.make === 'All'){return setTypeList(['All'])}
-    fetch(`http://localhost:3001/type?make=${searchInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
+    fetch(`http://localhost:3001/type`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
     .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
     .then(list => setTypeList(list))
     .catch(err=>err)
-  }, [searchInput.make]) //Updates the model list every time a new make is selected.
-
-  useEffect(() => {
-    if(searchInput.make === 'All'){return setPriceList(['All'])}
-    fetch(`http://localhost:3001/price?make=${searchInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
-    .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
-    .then(list => setPriceList(list))
-    .catch(err=>err)
-  }, [searchInput.make]) //Updates the model list every time a new make is selected.
-
-  useEffect(() => {
-    if(searchInput.make === 'All'){return setNewList(['All'])}
-    fetch(`http://localhost:3001/isNew?make=${searchInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
-    .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
-    .then(list => setNewList(list))
-    .catch(err=>err)
-  }, [searchInput.make]) //Updates the model list every time a new make is selected.
-
-  useEffect(() => {
-    if(searchInput.make === 'All'){return setMileageList(['All'])}
-    fetch(`http://localhost:3001/mileage?make=${searchInput.make}`,) //http://localhost:3001/model?make=Ford SELECT model FROM vehicles WHERE make=Ford
-    .then(response => response.json()) //maybe the response is already a json, this depends on how the backend sends things
-    .then(list => setMileageList(list))
-    .catch(err=>err)
-  }, [searchInput.make]) //Updates the model list every time a new make is selected.
-
+  }, []) //Updates only once
 
   return (
-    <div>
-      <div>
-      {/* Button for Year */}
-      <p>Year</p>
+    <div className={styles.filters}>
+      <h1>Filter</h1>
+      <div className={styles.makeSelector}>
+      {/* Button for Make */}
+      <p>Make</p>
       <DropdownButton
         as={ButtonGroup}
-        key={'year'}
-        id={`dropdown-variants-year`}
+        key={'make'}
+        id={`dropdown-variants-make`}
         // variant={variant.toLowerCase()}
-        title={filterInput.year} //change button displayed make when state is changed.
+        title={filterInput.make} //change button displayed make when state is changed.
+        
       >
-        <Dropdown.Menu>
-          {yearList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+          {makeList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, make:`${variant}`, model: 'All'}))}>{variant}</Dropdown.Item>),)}
       </DropdownButton>
+      </div>
 
+      <div className={styles.modelSelector}>
+      {/* Button for Model */}
+      <p>Model</p>
+      <DropdownButton
+        as={ButtonGroup}
+        key={'model'}
+        id={`dropdown-variants-model`}
+        // variant={variant.toLowerCase()}
+        title={filterInput.model} //change button displayed make when state is changed.
+      >
+        
+          {modelList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, model: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
+      </DropdownButton>
+      </div>
 
+      <div className={styles.yearSelector}>
+      {/* textbox for Year */}
+      <p>Year</p>
+      <input
+            type="text"
+            id ="YearBox"
+            maxlength="4"
+            onChange= {()=> (setFilterInput({...filterInput, year: `${document.getElementById("YearBox").value === '' ? 'All' : document.getElementById("YearBox").value }`}))}
+         />
+      </div>
+
+      <div className={styles.colorSelector}>
       {/* Button for Color */}
       <p>Color</p>
       <DropdownButton
@@ -107,11 +113,13 @@ function SearchFilters() {
         // variant={variant.toLowerCase()}
         title={filterInput.color} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {colorList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {colorList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, color: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
+      </div>
 
+      <div className={styles.typeSelector}>
       {/* Button for Type */}
       <p>Type</p>
       <DropdownButton
@@ -121,54 +129,45 @@ function SearchFilters() {
         // variant={variant.toLowerCase()}
         title={filterInput.type} //change button displayed make when state is changed.
       >
-        <Dropdown.Menu>
-          {typeList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
+        
+          {typeList.map(variant => (<Dropdown.Item className={styles.button}  as="button" onClick={ ()=> (setFilterInput({...filterInput, type: `${variant}`}))}>{variant}</Dropdown.Item>),)}
+        
       </DropdownButton>
+      </div>
 
       {/* Button for Max Price */}
+      <div className={styles.priceSelector}>
       <p>Max Price</p>
-      <DropdownButton
-        as={ButtonGroup}
-        key={'maxPrice'}
-        id={`dropdown-variants-maxPrice`}
-        // variant={variant.toLowerCase()}
-        title={filterInput.maxPrice} //change button displayed make when state is changed.
-      >
-        <Dropdown.Menu>
-          {priceList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
-      </DropdownButton>
-
+      <input
+            type="text"
+            id ="PriceBox"
+            maxlength="10"
+            onChange= {()=> (setFilterInput({...filterInput, maxPrice: `${document.getElementById("PriceBox").value === '' ? 'All' : document.getElementById("PriceBox").value }`}))}
+         />
+        </div>
       {/* Button for isNew */}
+      
+
+      <div className={styles.conditionSelector}>
       <p>Condition</p>
-      <DropdownButton
-        as={ButtonGroup}
-        key={'isNew'}
-        id={`dropdown-variants-isNew`}
-        // variant={variant.toLowerCase()}
-        title={filterInput.isNew} //change button displayed make when state is changed.
-      >
-        <Dropdown.Menu>
-          {newList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
-      </DropdownButton>
-
+      
+        <input type="radio" value="all" name="ConditionSelect" onChange= {()=> (setFilterInput({...filterInput, isNew: 'All'}))}/> All
+        <input type="radio" value="true" name="ConditionSelect" onChange= {()=> (setFilterInput({...filterInput, isNew: true}))}/> New
+        <input type="radio" value="false" name="ConditionSelect" onChange= {()=> (setFilterInput({...filterInput, isNew: false}))}/> Used
+      </div>
+      
       {/* Button for Mileage */}
+      <div className={styles.mileageSelector}>
       <p>Mileage</p>
-      <DropdownButton
-        as={ButtonGroup}
-        key={'mileage'}
-        id={`dropdown-variants-mileage`}
-        // variant={variant.toLowerCase()}
-        title={filterInput.mileage} //change button displayed make when state is changed.
-      >
-        <Dropdown.Menu>
-          {mileageList.map(variant => (<Dropdown.Item onClick={ ()=> (setFilterInput({year: `${filterInput.year}`, color: `${filterInput.color}`, type: `${filterInput.type}`, maxPrice: `${filterInput.maxPrice}`, isNew: `${filterInput.isNew}`, mileage: `${filterInput.mileage}`}))}>{variant}</Dropdown.Item>),)}
-        </Dropdown.Menu>
-      </DropdownButton>
-
-
+      <input
+            type="text"
+            id ="Mileage"
+            maxlength="6"
+            onChange= {()=> {
+              console.log(document.getElementById("Mileage").value) 
+              setFilterInput({...filterInput, mileage: `${document.getElementById("Mileage").value === '' ? 'All' : document.getElementById("Mileage").value }`})}
+            }
+         />
       </div>
       <button class={styles.buttonBox} type='submit' onClick={onSearchSubmit}>Filter</button>
     </div>

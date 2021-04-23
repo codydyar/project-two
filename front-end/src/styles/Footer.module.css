@@ -1,0 +1,26 @@
+.footer {
+    background-color: rgb(218, 132, 21);
+    border: 2px solid black;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.footer > a {
+    margin: 5px;
+}
+
+.contactUs {
+    margin: 10px;
+}
+
+.contactUs > ul {
+    padding-inline-start: 0px;
+}
+
+.contactUs > ul > li {
+    margin: 5px;
+    display: inline;
+    list-style-type: none;
+    text-decoration: none;
+}

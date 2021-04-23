@@ -16,12 +16,13 @@ router.get('/', function(req, res, next) {
       if(((req.query.make === undefined) || (req.query.make === 'All')) === false) {query.where('make', req.query.make)}
       if(((req.query.model === undefined) || (req.query.model === 'All')) === false) {query.where('model', req.query.model)}
       if(((req.query.color === undefined) || (req.query.color === 'All')) === false) {query.where('color', req.query.color)}
-      if(((req.query.mileage === undefined) || (req.query.mileage === 'All')) === false) {query.where('mileage', req.query.mileage)}
-      if(((req.query.price === undefined) || (req.query.price === 'All')) === false) {query.where('price', req.query.price)}
-      if(((req.query.isNew === undefined) || (req.query.isNew === 'All')) === false) {query.where('isNew', req.query.isNew)}
+      if(((req.query.mileage === undefined) || (req.query.mileage === 'All')) === false) {query.where('mileage', '<', req.query.mileage)}
+      if(((req.query.maxPrice === undefined) || (req.query.maxPrice === 'All')) === false) {query.where('price', '<', req.query.maxPrice)}
+      if(((req.query.condition === undefined) || (req.query.condition === 'All')) === false) {query.where('isNew', req.query.condition)}
       
       query.then(data => {
         console.log(data)
+        console.log(data.length+' Entries Found')
         return res.status(200).json(data)
       })
         .catch(err =>

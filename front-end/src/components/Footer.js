@@ -5,21 +5,23 @@ import styles from '../styles/Footer.module.css';
 
 function Footer() {
 
-
   return (
     <div className={styles.footer}>
-      <p>logo goes here</p>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to ="/about">About</Link>
-        </li>
-        <li>
-          <Link to ="/contact-us">Contact Us</Link>
-        </li>
-      </ul>
+      <Link to ="/about">Learn more about us!</Link>
+      <section className={styles.contactUs}>
+        Contact Us
+        <ul>
+          <li>
+            Facebook
+          </li>
+          <li>
+            Instagram
+          </li>
+          <li>
+            LinkedIn
+          </li>
+        </ul>
+      </section>
     </div>
   )
 }
